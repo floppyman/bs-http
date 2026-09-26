@@ -1,0 +1,6 @@
+# FOLDERS
+.idea/
+logs/
+
+# FILES
+.env
