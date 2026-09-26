@@ -2,17 +2,7 @@ package middlewares
 
 import "net/http"
 
-type responseRecorder struct {
-	http.ResponseWriter
-	statusCode int
-}
-
-func (rr *responseRecorder) WriteHeader(code int) {
-	rr.statusCode = code
-	rr.ResponseWriter.WriteHeader(code)
-}
-
-type userContextKey struct{}
+type UserContextKey struct{}
 
 // UserContext holds the authenticated user's information stored in the request context.
 type UserContext struct {
@@ -26,6 +16,6 @@ type UserContext struct {
 
 // GetUserContext extracts the UserContext from the request context.
 func GetUserContext(r *http.Request) (UserContext, bool) {
-	uc, ok := r.Context().Value(userContextKey{}).(UserContext)
+	uc, ok := r.Context().Value(UserContextKey{}).(UserContext)
 	return uc, ok
 }

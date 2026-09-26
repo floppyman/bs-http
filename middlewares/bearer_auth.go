@@ -58,7 +58,7 @@ func BearerAuthMiddleware(jwtSecret string, jwtIssuer string, getToken func(stri
 				RoleId:      user.RoleId,
 				TokenSource: tokenSource,
 			}
-			ctx := context.WithValue(r.Context(), userContextKey{}, uc)
+			ctx := context.WithValue(r.Context(), UserContextKey{}, uc)
 			next.ServeHTTP(w, r.WithContext(ctx))
 		})
 	}
